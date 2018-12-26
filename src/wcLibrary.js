@@ -7,7 +7,8 @@ const {
 const {
   formatOutput,
   parser,
-  getIndividualOutputs
+  getIndividualOutputs,
+  getCombinations
 } = require("../src/handleIO.js");
 
 const getResult = function(
@@ -25,7 +26,13 @@ const getResult = function(
     ),
     l: getIndividualOutputs(numberOfLines, file),
     w: getIndividualOutputs(numberOfWords, file),
-    c: getIndividualOutputs(numberOfCharacters, file)
+    c: getIndividualOutputs(numberOfCharacters, file),
+    lw: getCombinations(numberOfLines, numberOfWords, file),
+    lc: getCombinations(numberOfLines, numberOfCharacters, file),
+    wc: getCombinations(numberOfWords, numberOfCharacters, file),
+    wl: getCombinations(numberOfWords, numberOfLines, file),
+    cw: getCombinations(numberOfCharacters, numberOfWords, file),
+    cl: getCombinations(numberOfCharacters, numberOfLines, file)
   };
 };
 

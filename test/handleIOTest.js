@@ -3,7 +3,9 @@ const {
   parser,
   getParsed,
   formatOutput,
-  getIndividualOutputs
+  getIndividualOutputs,
+  getCombinations,
+  parseWithOption
 } = require("../src/handleIO.js");
 
 describe("parse", function() {
@@ -66,6 +68,38 @@ describe("getIndividualOutputs", function() {
   it("should return the output for individual options", function() {
     let actualOutput = getIndividualOutputs(1, "sample");
     let expectedOutput = "\t1 sample";
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
+
+describe("getCombinations", function() {
+  it("should return the output with a pair of counts and file", function() {
+    let firstCount = 1;
+    let secondCount = 2;
+    let file = "sample";
+    let actualOutput = getCombinations(firstCount, secondCount, file);
+    let expectedOutput = "\t1\t2 sample";
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
+
+describe("parseWithOption", function() {
+  it("should return an object with option and the files", function() {
+    let firstArg = "-a";
+    let args = ["-a", "sample"];
+    let actualOutput = parseWithOption(firstArg, args);
+    let expectedOutput = { option: "a", files: ["sample"] };
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+
+  it("should return an object with combination options and the files", function() {
+    let firstArg = "-lw";
+    let args = ["-lw", "sample"];
+    let actualOutput = parseWithOption(firstArg, args);
+    let expectedOutput = { option: "lw", files: ["sample"] };
 
     assert.deepEqual(actualOutput, expectedOutput);
   });
