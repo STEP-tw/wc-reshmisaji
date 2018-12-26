@@ -30,9 +30,9 @@ const getResult = function(
     lw: getCombinations(numberOfLines, numberOfWords, file),
     lc: getCombinations(numberOfLines, numberOfCharacters, file),
     wc: getCombinations(numberOfWords, numberOfCharacters, file),
-    wl: getCombinations(numberOfWords, numberOfLines, file),
-    cw: getCombinations(numberOfCharacters, numberOfWords, file),
-    cl: getCombinations(numberOfCharacters, numberOfLines, file)
+    wl: getCombinations(numberOfLines, numberOfWords, file),
+    cw: getCombinations(numberOfWords, numberOfCharacters, file),
+    cl: getCombinations(numberOfLines, numberOfCharacters, file)
   };
 };
 

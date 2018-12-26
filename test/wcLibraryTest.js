@@ -62,9 +62,9 @@ describe("getResult", function() {
       lw: "\t1\t2 sample",
       lc: "\t1\t5 sample",
       wc: "\t2\t5 sample",
-      wl: "\t2\t1 sample",
-      cw: "\t5\t2 sample",
-      cl: "\t5\t1 sample"
+      wl: "\t1\t2 sample",
+      cw: "\t2\t5 sample",
+      cl: "\t1\t5 sample"
     };
 
     assert.deepEqual(actualOutput, expectedOutput);
