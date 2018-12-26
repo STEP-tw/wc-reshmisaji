@@ -1,5 +1,7 @@
 TODO:
-* should handle a single file with arguments provides line
-
+* with arguments provides line, word and byte count and a total for multiple files
 DONE:
 * should handle default arguments for a single file
+* should handle a single file with arguments provides line
+* with arguments provides line, word and byte count and a total for multiple files
+* should provide the number of lines for a single file
