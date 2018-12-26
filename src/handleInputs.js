@@ -1,11 +1,14 @@
-const parse = function(args) {
-  let option = "default";
-  let files = args[0];
-  if (args[0].startsWith("-")) {
-    option = args[0];
-    files = args.slice(1);
+const getParsed = function(firstArg, args) {
+  if (firstArg.startsWith("-")) {
+    return { option: firstArg.slice(1), files: args.slice(1) };
   }
-  return { option: option, files: files };
+  return { option: "default", files: args };
 };
 
-module.exports = { parse };
+const parser = function(args) {
+  let firstArg = args[0];
+
+  return getParsed(firstArg, args);
+};
+
+module.exports = { parser, getParsed };
