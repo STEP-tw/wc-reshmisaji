@@ -14,6 +14,10 @@ const parser = function(args) {
   return getParsed(firstArg, args);
 };
 
+const getIndividualOutputs = function(count, fileName) {
+  return TAB + count + " " + fileName;
+};
+
 const formatOutput = function(
   numberOfLines,
   numberOfWords,
@@ -32,4 +36,4 @@ const formatOutput = function(
   );
 };
 
-module.exports = { parser, getParsed, formatOutput };
+module.exports = { parser, getParsed, formatOutput, getIndividualOutputs };

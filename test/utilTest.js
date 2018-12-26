@@ -5,8 +5,16 @@ const {
   getCharacterCount,
   getWordCount,
   isNonEmpty,
-  removeEmptyStrings
+  removeEmptyStrings,
+  getContents
 } = require("../src/util.js");
+
+const fs = {
+  readFileSync: function(fileName) {
+    return this[fileName];
+  },
+  sample: "1 2 a"
+};
 
 describe("getLineCount", function() {
   it("should return 1 when given an empty string", function() {
@@ -60,6 +68,16 @@ describe("removeEmptyStrings", function() {
     let contents = ["a", ""];
     let expectedOutput = ["a"];
     let actualOutput = removeEmptyStrings(contents);
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
+
+describe("getContents", function() {
+  it("should return the contents of the file", function() {
+    let file = "sample";
+    let expectedOutput = "1 2 a";
+    let actualOutput = getContents(file, fs);
 
     assert.deepEqual(actualOutput, expectedOutput);
   });

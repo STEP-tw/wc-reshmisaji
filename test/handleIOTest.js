@@ -1,5 +1,10 @@
 const assert = require("assert");
-const { parser, getParsed, formatOutput } = require("../src/handleIO.js");
+const {
+  parser,
+  getParsed,
+  formatOutput,
+  getIndividualOutputs
+} = require("../src/handleIO.js");
 
 describe("parse", function() {
   it("should return an object with keys option and files", function() {
@@ -52,6 +57,15 @@ describe("formatOutput", function() {
       characterCount,
       fileName
     );
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
+
+describe("getIndividualOutputs", function() {
+  it("should return the output for individual options", function() {
+    let actualOutput = getIndividualOutputs(1, "sample");
+    let expectedOutput = "\t1 sample";
 
     assert.deepEqual(actualOutput, expectedOutput);
   });

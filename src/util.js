@@ -27,10 +27,15 @@ const getWordCount = function(contents) {
   return wordsWithoutSpace.length;
 };
 
+const getContents = function(filePath, fs) {
+  return fs.readFileSync(filePath, "utf8");
+};
+
 module.exports = {
   getLineCount,
   getCharacterCount,
   getWordCount,
   isNonEmpty,
-  removeEmptyStrings
+  removeEmptyStrings,
+  getContents
 };
