@@ -4,7 +4,7 @@ const SPACE = " ";
 
 const getLineCount = function(contents) {
   let data = contents.split(NEWLINE);
-  return data.length;
+  return data.length - 1;
 };
 
 const getCharacterCount = function(contents) {

@@ -5,19 +5,27 @@ const {
   getWordCount,
   isNonEmpty,
   removeEmptyStrings,
-  formatOutput
+  formatOutput,
+  wc
 } = require("../src/wcLibrary.js");
+
+const fs = {
+  readFileSync: function(fileName) {
+    return this[fileName];
+  },
+  sample: "1 2 a"
+};
 
 describe("getLineCount", function() {
   it("should return 1 when given an empty string", function() {
-    assert.deepEqual(getLineCount(""), 1);
+    assert.deepEqual(getLineCount(""), 0);
   });
 
-  it("should return 2 when given a contents with 1 \n", function() {
-    assert.deepEqual(getLineCount("a\nb"), 2);
+  it("should return 2 when given a contents with 1 '\n'", function() {
+    assert.deepEqual(getLineCount("a\nb"), 1);
   });
-  it("should return 2 when given a string with \n", function() {
-    assert.deepEqual(getLineCount("\n"), 2);
+  it("should return 2 when given a string with '\n'", function() {
+    assert.deepEqual(getLineCount("\n"), 1);
   });
 });
 
@@ -78,6 +86,16 @@ describe("formatOutput", function() {
       characterCount,
       fileName
     );
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
+
+describe("wc", function() {
+  it("should return lineCount,wordCount,characterCount and fileName", function() {
+    let fileName = "sample";
+    let expectedOutput = "\t0\t3\t5 sample";
+    let actualOutput = wc(fileName, fs);
 
     assert.deepEqual(actualOutput, expectedOutput);
   });
