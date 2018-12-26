@@ -3,27 +3,7 @@ const {
   getWordCount,
   getCharacterCount
 } = require("../src/util.js");
-
-const TAB = "\t";
-const SPACE = " ";
-
-const formatOutput = function(
-  numberOfLines,
-  numberOfWords,
-  numberOfCharacters,
-  filePath
-) {
-  return (
-    TAB +
-    numberOfLines +
-    TAB +
-    numberOfWords +
-    TAB +
-    numberOfCharacters +
-    SPACE +
-    filePath
-  );
-};
+const { formatOutput } = require("../src/handleIO.js");
 
 const wc = function(filePath, fs) {
   let contents = fs.readFileSync(filePath, "utf8");

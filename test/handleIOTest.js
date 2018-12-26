@@ -1,5 +1,5 @@
 const assert = require("assert");
-const { parser, getParsed } = require("../src/handleInputs.js");
+const { parser, getParsed, formatOutput } = require("../src/handleIO.js");
 
 describe("parse", function() {
   it("should return an object with keys option and files", function() {
@@ -34,6 +34,24 @@ describe("getParsed", function() {
     let arguments = ["-l", "sample"];
     let expectedOutput = { option: "l", files: ["sample"] };
     let actualOutput = getParsed(possibleOption, arguments);
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
+
+describe("formatOutput", function() {
+  it("should return the result with lineCount,wordCount,characterCount and fileName", function() {
+    let fileName = "sample.txt";
+    let wordCount = 2;
+    let lineCount = 1;
+    let characterCount = 3;
+    let expectedOutput = "\t1\t2\t3 sample.txt";
+    let actualOutput = formatOutput(
+      lineCount,
+      wordCount,
+      characterCount,
+      fileName
+    );
 
     assert.deepEqual(actualOutput, expectedOutput);
   });
