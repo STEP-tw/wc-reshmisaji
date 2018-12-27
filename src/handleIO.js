@@ -1,21 +1,30 @@
 const TAB = "\t";
 const SPACE = " ";
 
-const parseWithOption = function(firstArg, args) {
-  return { option: firstArg.slice(1), files: args.slice(1) };
+const getOptionsParsed = function(optionArgs) {
+  let option = optionArgs.map(x => x.slice(1)).join("");
+
+  return option;
 };
 
-const getParsed = function(firstArg, args) {
-  if (firstArg.startsWith("-")) {
-    return parseWithOption(firstArg, args);
-  }
-  return { option: "lwc", files: args };
+const getOptionArg = function(arg) {
+  return arg.startsWith("-");
+};
+
+const getFiles = function(arg) {
+  return !getOptionArg(arg);
 };
 
 const parser = function(args) {
-  let firstArg = args[0];
+  let optionArgs = args.filter(getOptionArg);
+  let files = args.filter(getFiles);
+  let option = "lwc";
 
-  return getParsed(firstArg, args);
+  if (optionArgs.length > 0) {
+    option = getOptionsParsed(optionArgs);
+  }
+
+  return { option: option, files: files };
 };
 
 const formatOutput = function(counts, filePath) {
@@ -26,7 +35,6 @@ const formatOutput = function(counts, filePath) {
 
 module.exports = {
   parser,
-  getParsed,
-  formatOutput,
-  parseWithOption
+  getOptionsParsed,
+  formatOutput
 };
