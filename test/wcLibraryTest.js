@@ -7,7 +7,8 @@ const {
   getWords,
   getRequired,
   getContentDetails,
-  addDetails
+  addDetails,
+  addCounts
 } = require("../src/wcLibrary.js");
 
 const fs = {
@@ -72,7 +73,8 @@ describe("wc", function() {
   describe("multiple Files", function() {
     it("should return lineCount,wordCount,characterCount and fileName", function() {
       let fileName = ["sample", "sampleNumbers"];
-      let expectedOutput = "\t0\t3\t5 sample\n\t0\t2\t3 sampleNumbers";
+      let expectedOutput =
+        "\t0\t3\t5 sample\n\t0\t2\t3 sampleNumbers\n\t0\t5\t8 total";
       let actualOutput = wc(fileName, fs);
 
       assert.deepEqual(actualOutput, expectedOutput);
@@ -80,7 +82,7 @@ describe("wc", function() {
 
     it("should return lineCount,wordCount,characterCount and fileName when given options", function() {
       let fileName = ["-l", "sample", "sampleNumbers"];
-      let expectedOutput = "\t0 sample\n\t0 sampleNumbers";
+      let expectedOutput = "\t0 sample\n\t0 sampleNumbers\n\t0 total";
       let actualOutput = wc(fileName, fs);
 
       assert.deepEqual(actualOutput, expectedOutput);
@@ -88,7 +90,7 @@ describe("wc", function() {
 
     it("should return lineCount,wordCount,characterCount and fileName when given options", function() {
       let fileName = ["-w", "sample", "sampleNumbers"];
-      let expectedOutput = "\t3 sample\n\t2 sampleNumbers";
+      let expectedOutput = "\t3 sample\n\t2 sampleNumbers\n\t5 total";
       let actualOutput = wc(fileName, fs);
 
       assert.deepEqual(actualOutput, expectedOutput);
@@ -96,7 +98,7 @@ describe("wc", function() {
 
     it("should return lineCount,wordCount,characterCount and fileName when given options", function() {
       let fileName = ["-c", "sample", "sampleNumbers"];
-      let expectedOutput = "\t5 sample\n\t3 sampleNumbers";
+      let expectedOutput = "\t5 sample\n\t3 sampleNumbers\n\t8 total";
       let actualOutput = wc(fileName, fs);
 
       assert.deepEqual(actualOutput, expectedOutput);
@@ -196,6 +198,17 @@ describe("addDetails", function() {
     let contentDetails = [[0, 3, 5], "sample"];
     let actualOutput = addDetails(contentDetails);
     let expectedOutput = "\t0\t3\t5 sample";
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
+
+describe("addCounts", function() {
+  it("should return the total count of all the elememts of two arrays", function() {
+    let firstCounts = [1, 2, 3];
+    let secondCount = [2, 4, 6];
+    let actualOutput = addCounts(firstCounts, secondCount);
+    let expectedOutput = [3, 6, 9];
 
     assert.deepEqual(actualOutput, expectedOutput);
   });

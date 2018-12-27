@@ -55,6 +55,14 @@ const getContentDetails = function(option, fs, file) {
   return [counts, file];
 };
 
+const addCounts = function(firstCounts, secondCounts) {
+  let sumCounts = [];
+  for (let index = 0; index < firstCounts.length; index++) {
+    sumCounts.push(firstCounts[index] + secondCounts[index]);
+  }
+  return sumCounts;
+};
+
 const addDetails = function(contentDetails) {
   let counts = contentDetails[0];
   let fileName = contentDetails[1];
@@ -62,10 +70,20 @@ const addDetails = function(contentDetails) {
   return formatOutput(counts, fileName);
 };
 
+const getAllCounts = function(fileDetails) {
+  return fileDetails[0];
+};
+
 const wc = function(filePath, fs) {
   let { option, files } = parser(filePath);
   let getFileDetails = getContentDetails.bind(null, option, fs);
   let fileDetails = files.map(getFileDetails);
+  let allCounts = fileDetails.map(getAllCounts);
+  let total = allCounts.reduce(addCounts);
+
+  if (fileDetails.length > 1) {
+    fileDetails.push([total, "total"]);
+  }
   let finalResult = fileDetails.map(x => addDetails(x));
 
   return finalResult.join("\n");
@@ -79,5 +97,6 @@ module.exports = {
   wc,
   getRequired,
   getContentDetails,
-  addDetails
+  addDetails,
+  addCounts
 };
