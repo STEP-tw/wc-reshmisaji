@@ -3,18 +3,9 @@ const assert = require("assert");
 const {
   getLineCount,
   getCharacterCount,
-  getWordCount,
   isNonEmpty,
-  removeEmptyStrings,
-  getContents
+  removeEmptyStrings
 } = require("../src/util.js");
-
-const fs = {
-  readFileSync: function(fileName) {
-    return this[fileName];
-  },
-  sample: "1 2 a"
-};
 
 describe("getLineCount", function() {
   it("should return 1 when given an empty string", function() {
@@ -36,12 +27,6 @@ describe("getCharacterCount", function() {
 
   it("should return 1 when given a string with a character", function() {
     assert.deepEqual(getCharacterCount("a"), 1);
-  });
-});
-
-describe("getWordCount", function() {
-  it("should return 0 when given a space", function() {
-    assert.deepEqual(getWordCount(""), 0);
   });
 });
 
@@ -68,16 +53,6 @@ describe("removeEmptyStrings", function() {
     let contents = ["a", ""];
     let expectedOutput = ["a"];
     let actualOutput = removeEmptyStrings(contents);
-
-    assert.deepEqual(actualOutput, expectedOutput);
-  });
-});
-
-describe("getContents", function() {
-  it("should return the contents of the file", function() {
-    let file = "sample";
-    let expectedOutput = "1 2 a";
-    let actualOutput = getContents(file, fs);
 
     assert.deepEqual(actualOutput, expectedOutput);
   });

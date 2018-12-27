@@ -1,10 +1,30 @@
 const {
   getLineCount,
-  getWordCount,
   getCharacterCount,
-  getContents
+  removeEmptyStrings
 } = require("../src/util.js");
 const { formatOutput, parser } = require("../src/handleIO.js");
+
+const NEWLINE = "\n";
+const SPACE = " ";
+
+const getWords = function(contents) {
+  let data = contents.split(NEWLINE);
+  data = data.join(SPACE);
+  let words = data.split(SPACE);
+  return words;
+};
+
+const getWordCount = function(contents) {
+  let words = getWords(contents);
+  let wordsWithoutSpace = removeEmptyStrings(words);
+
+  return wordsWithoutSpace.length;
+};
+
+const getContents = function(filePath, fs) {
+  return fs.readFileSync(filePath, "utf8");
+};
 
 const getCounts = function(contents) {
   let numberOfLines = getLineCount(contents);
@@ -38,7 +58,4 @@ const wc = function(filePath, fs) {
   return result;
 };
 
-module.exports = {
-  getCounts,
-  wc
-};
+module.exports = { getWords, getWordCount, getContents, getCounts, wc };

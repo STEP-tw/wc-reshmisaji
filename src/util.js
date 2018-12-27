@@ -1,5 +1,4 @@
 const NEWLINE = "\n";
-const SPACE = " ";
 
 const getLineCount = function(contents) {
   let data = contents.split(NEWLINE);
@@ -18,24 +17,9 @@ const removeEmptyStrings = function(contents) {
   return contents.filter(isNonEmpty);
 };
 
-const getWordCount = function(contents) {
-  let data = contents.split(NEWLINE);
-  data = data.join(SPACE);
-  let words = data.split(SPACE);
-  let wordsWithoutSpace = removeEmptyStrings(words);
-
-  return wordsWithoutSpace.length;
-};
-
-const getContents = function(filePath, fs) {
-  return fs.readFileSync(filePath, "utf8");
-};
-
 module.exports = {
   getLineCount,
   getCharacterCount,
-  getWordCount,
   isNonEmpty,
-  removeEmptyStrings,
-  getContents
+  removeEmptyStrings
 };
