@@ -18,3 +18,9 @@ DONE:
 * should count lines and bytes when -cl is specified
 * should count words and bytes when -wc is specified
 * should count words and bytes when -cw is specified
+* should count words, lines and bytes when -lcw is specified
+* should count words, lines and bytes when -lwc is specified
+* should count words, lines and bytes when -clw is specified
+* should count words, lines and bytes when -cwl is specified
+* should count words, lines and bytes when -wlc is specified
+* should count words, lines and bytes when -wcl is specified
