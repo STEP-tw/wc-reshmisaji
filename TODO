@@ -1,8 +1,5 @@
 TODO:
-01 with arguments provides line, word and byte count and a total for multiple files
-02 with arguments provides line counts and a total for multiple files
-03 with arguments provides byte counts and a total for multiple files
-04 with arguments provides word counts and a total for multiple files
+* Refactoring
 
 
 DONE:
@@ -34,3 +31,7 @@ DONE:
 26 should count words, lines and bytes when -c -w -l is specified
 27 should count words, lines and bytes when -w -l -c is specified
 28 should count words, lines and bytes when -w -c -l is specified
+29 with arguments provides line, word and byte count and a total for multiple files
+30 with arguments provides line counts and a total for multiple files
+31 with arguments provides byte counts and a total for multiple files
+32 with arguments provides word counts and a total for multiple files
