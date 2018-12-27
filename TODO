@@ -1,36 +1,36 @@
 TODO:
-* with arguments provides line, word and byte count and a total for multiple files
-* with arguments provides line counts and a total for multiple files
-* with arguments provides byte counts and a total for multiple files
-* with arguments provides word counts and a total for multiple files
+01 with arguments provides line, word and byte count and a total for multiple files
+02 with arguments provides line counts and a total for multiple files
+03 with arguments provides byte counts and a total for multiple files
+04 with arguments provides word counts and a total for multiple files
 
 
 DONE:
-* should handle default arguments for a single file
-* should handle a single file with arguments provides line
-* with arguments provides line, word and byte count and a total for multiple files
-* should provide the number of lines for a single file
-* should count lines and words when -lw is specified
-* should count lines and words when -wl is specified
-* should count lines and bytes when -lc is specified
-* should count lines and bytes when -cl is specified
-* should count words and bytes when -wc is specified
-* should count words and bytes when -cw is specified
-* should count words, lines and bytes when -lcw is specified
-* should count words, lines and bytes when -lwc is specified
-* should count words, lines and bytes when -clw is specified
-* should count words, lines and bytes when -cwl is specified
-* should count words, lines and bytes when -wlc is specified
-* should count words, lines and bytes when -wcl is specified
-* should count lines and words when -l -w is specified
-* should count lines and words when -w -l is specified
-* should count lines and bytes when -l- c is specified
-* should count lines and bytes when -c -l is specified
-* should count words and bytes when -w -c is specified
-* should count words and bytes when -c -w is specified
-* should count words, lines and bytes when -l -c -w is specified
-* should count words, lines and bytes when -l -w -c is specified
-* should count words, lines and bytes when -c -l -w is specified
-* should count words, lines and bytes when -c -w -l is specified
-* should count words, lines and bytes when -w -l -c is specified
-* should count words, lines and bytes when -w -c -l is specified
+01 should handle default arguments for a single file
+02 should handle a single file with arguments provides line
+03 with arguments provides line, word and byte count and a total for multiple files
+04 should provide the number of lines for a single file
+05 should count lines and words when -lw is specified
+06 should count lines and words when -wl is specified
+07 should count lines and bytes when -lc is specified
+08 should count lines and bytes when -cl is specified
+09 should count words and bytes when -wc is specified
+10 should count words and bytes when -cw is specified
+11 should count words, lines and bytes when -lcw is specified
+12 should count words, lines and bytes when -lwc is specified
+13 should count words, lines and bytes when -clw is specified
+14 should count words, lines and bytes when -cwl is specified
+15 should count words, lines and bytes when -wlc is specified
+16 should count words, lines and bytes when -wcl is specified
+17 should count lines and words when -l -w is specified
+18 should count lines and words when -w -l is specified
+19 should count lines and bytes when -l- c is specified
+20 should count lines and bytes when -c -l is specified
+21 should count words and bytes when -w -c is specified
+22 should count words and bytes when -c -w is specified
+23 should count words, lines and bytes when -l -c -w is specified
+24 should count words, lines and bytes when -l -w -c is specified
+25 should count words, lines and bytes when -c -l -w is specified
+26 should count words, lines and bytes when -c -w -l is specified
+27 should count words, lines and bytes when -w -l -c is specified
+28 should count words, lines and bytes when -w -c -l is specified
