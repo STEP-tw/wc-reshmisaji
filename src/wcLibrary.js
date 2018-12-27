@@ -49,13 +49,16 @@ const getRequired = function(allCounts, option) {
 
 const wc = function(filePath, fs) {
   let { option, files } = parser(filePath);
-  let contents = getContents(files[0], fs);
-  let allCounts = getCounts(contents);
-  let counts = getRequired(allCounts, option);
 
-  let result = formatOutput(counts, files[0]);
+  let finalResult = files.map(function(file) {
+    let contents = getContents(file, fs);
+    let allCounts = getCounts(contents);
+    let counts = getRequired(allCounts, option);
+    let result = formatOutput(counts, file);
 
-  return result;
+    return result;
+  });
+  return finalResult.join("\n");
 };
 
 module.exports = { getWords, getWordCount, getContents, getCounts, wc };
