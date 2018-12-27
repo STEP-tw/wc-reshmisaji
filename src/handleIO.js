@@ -9,7 +9,7 @@ const getParsed = function(firstArg, args) {
   if (firstArg.startsWith("-")) {
     return parseWithOption(firstArg, args);
   }
-  return { option: "default", files: args };
+  return { option: "lwc", files: args };
 };
 
 const parser = function(args) {
@@ -18,37 +18,15 @@ const parser = function(args) {
   return getParsed(firstArg, args);
 };
 
-const getCombinations = function(firstCount, secondCount, fileName) {
-  return TAB + firstCount + TAB + secondCount + " " + fileName;
-};
+const formatOutput = function(counts, filePath) {
+  let formatedOutput = counts.map(x => TAB + x).join("");
 
-const getIndividualOutputs = function(count, fileName) {
-  return TAB + count + " " + fileName;
-};
-
-const formatOutput = function(
-  numberOfLines,
-  numberOfWords,
-  numberOfCharacters,
-  filePath
-) {
-  return (
-    TAB +
-    numberOfLines +
-    TAB +
-    numberOfWords +
-    TAB +
-    numberOfCharacters +
-    SPACE +
-    filePath
-  );
+  return formatedOutput + SPACE + filePath;
 };
 
 module.exports = {
   parser,
   getParsed,
   formatOutput,
-  getIndividualOutputs,
-  getCombinations,
   parseWithOption
 };
