@@ -47,18 +47,37 @@ const getRequired = function(allCounts, option) {
   return resultCount;
 };
 
+const getContentDetails = function(option, fs, file) {
+  let contents = getContents(file, fs);
+  let allCounts = getCounts(contents);
+  let counts = getRequired(allCounts, option);
+
+  return [counts, file];
+};
+
+const addDetails = function(contentDetails) {
+  let counts = contentDetails[0];
+  let fileName = contentDetails[1];
+
+  return formatOutput(counts, fileName);
+};
+
 const wc = function(filePath, fs) {
   let { option, files } = parser(filePath);
+  let getFileDetails = getContentDetails.bind(null, option, fs);
+  let fileDetails = files.map(getFileDetails);
+  let finalResult = fileDetails.map(x => addDetails(x));
 
-  let finalResult = files.map(function(file) {
-    let contents = getContents(file, fs);
-    let allCounts = getCounts(contents);
-    let counts = getRequired(allCounts, option);
-    let result = formatOutput(counts, file);
-
-    return result;
-  });
   return finalResult.join("\n");
 };
 
-module.exports = { getWords, getWordCount, getContents, getCounts, wc };
+module.exports = {
+  getWords,
+  getWordCount,
+  getContents,
+  getCounts,
+  wc,
+  getRequired,
+  getContentDetails,
+  addDetails
+};

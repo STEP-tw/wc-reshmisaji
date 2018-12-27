@@ -4,7 +4,10 @@ const {
   getCounts,
   getWordCount,
   getContents,
-  getWords
+  getWords,
+  getRequired,
+  getContentDetails,
+  addDetails
 } = require("../src/wcLibrary.js");
 
 const fs = {
@@ -116,6 +119,83 @@ describe("getWords", function() {
     let contents = "a b  c 1";
     let expectedOutput = ["a", "b", "", "c", "1"];
     let actualOutput = getWords(contents);
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
+
+describe("getRequired", function() {
+  it("should return get the required counts as per the options", function() {
+    let options = "lcw";
+    let counts = [1, 2, 3];
+    let actualOutput = getRequired(counts, options);
+    let expectedOutput = [1, 2, 3];
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+
+  it("should return get the required counts as per the options", function() {
+    let options = "lw";
+    let counts = [1, 2, 3];
+    let actualOutput = getRequired(counts, options);
+    let expectedOutput = [1, 2];
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+
+  it("should return get the required counts as per the options", function() {
+    let options = "cw";
+    let counts = [1, 2, 3];
+    let actualOutput = getRequired(counts, options);
+    let expectedOutput = [2, 3];
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+
+  it("should return get the required counts as per the options", function() {
+    let options = "w";
+    let counts = [1, 2, 3];
+    let actualOutput = getRequired(counts, options);
+    let expectedOutput = [2];
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
+
+describe("getContentDetails", function() {
+  it("should return the details about the file including file name", function() {
+    let options = "lcw";
+    let fileName = "sample";
+    let actualOutput = getContentDetails(options, fs, fileName);
+    let expectedOutput = [[0, 3, 5], "sample"];
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+
+  it("should return the details about the file including file name", function() {
+    let options = "lw";
+    let fileName = "sample";
+    let actualOutput = getContentDetails(options, fs, fileName);
+    let expectedOutput = [[0, 3], "sample"];
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+
+  it("should return the details about the file including file name", function() {
+    let options = "w";
+    let fileName = "sample";
+    let actualOutput = getContentDetails(options, fs, fileName);
+    let expectedOutput = [[3], "sample"];
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
+
+describe("addDetails", function() {
+  it("should return all the counts and fileName", function() {
+    let contentDetails = [[0, 3, 5], "sample"];
+    let actualOutput = addDetails(contentDetails);
+    let expectedOutput = "\t0\t3\t5 sample";
 
     assert.deepEqual(actualOutput, expectedOutput);
   });
