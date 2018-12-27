@@ -1,6 +1,11 @@
 TODO:
 * with arguments provides line, word and byte count and a total for multiple files
-
+* should count lines and words when -l -w is specified
+* should count lines and words when -w -l is specified
+* should count lines and bytes when -l- c is specified
+* should count lines and bytes when -c -l is specified
+* should count words and bytes when -w -c is specified
+* should count words and bytes when -c -w is specified
 
 DONE:
 * should handle default arguments for a single file
