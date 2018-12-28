@@ -1,10 +1,15 @@
 const TAB = "\t";
 const SPACE = " ";
+const validOptions = ["l", "w", "c"];
 
 const getOptionsParsed = function(optionArgs) {
-  let option = optionArgs.map(getOptions).join("");
+  let options = optionArgs.map(getOptions);
 
-  return option;
+  return options;
+};
+
+const isValidOption = function(option) {
+  return validOptions.includes(option);
 };
 
 const getOptionArg = function(arg) {
@@ -22,13 +27,16 @@ const getFiles = function(arg) {
 const parser = function(args) {
   let optionArgs = args.filter(getOptionArg);
   let files = args.filter(getFiles);
-  let option = "lwc";
+  let validOptions = ["l", "w", "c"];
+  let errorStatus = false;
 
   if (optionArgs.length > 0) {
-    option = getOptionsParsed(optionArgs);
+    let options = getOptionsParsed(optionArgs);
+    validOptions = options.filter(isValidOption);
+    errorStatus = validOptions.length != options.length;
   }
-
-  return { option: option, files: files };
+  let option = validOptions.join("");
+  return { option, files, errorStatus };
 };
 
 const formatOutput = function(counts, filePath) {

@@ -8,7 +8,11 @@ const {
 describe("parser", function() {
   it("should return an object with keys option and files when given without option", function() {
     let arguments = ["sample"];
-    let expectedOutput = { option: "lwc", files: ["sample"] };
+    let expectedOutput = {
+      option: "lwc",
+      files: ["sample"],
+      errorStatus: false
+    };
     let actualOutput = parser(arguments);
 
     assert.deepEqual(actualOutput, expectedOutput);
@@ -16,15 +20,35 @@ describe("parser", function() {
 
   it("should return an object with keys option and files when given single option", function() {
     let arguments = ["-l", "sample"];
-    let expectedOutput = { option: "l", files: ["sample"] };
+    let expectedOutput = {
+      option: "l",
+      files: ["sample"],
+      errorStatus: false
+    };
     let actualOutput = parser(arguments);
 
     assert.deepEqual(actualOutput, expectedOutput);
   });
 
   it("should return an object with keys option and files when multiple options are passed", function() {
-    let arguments = ["-l",'-c', "sample"];
-    let expectedOutput = { option: "lc", files: ["sample"] };
+    let arguments = ["-l", "-c", "sample"];
+    let expectedOutput = {
+      option: "lc",
+      files: ["sample"],
+      errorStatus: false
+    };
+    let actualOutput = parser(arguments);
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+
+  it("should return an object with keys  valid options and files when invalid options are passed", function() {
+    let arguments = ["-l", "-c", "-n", "sample"];
+    let expectedOutput = {
+      option: "lc",
+      files: ["sample"],
+      errorStatus: true
+    };
     let actualOutput = parser(arguments);
 
     assert.deepEqual(actualOutput, expectedOutput);
@@ -34,7 +58,7 @@ describe("parser", function() {
 describe("getOptionsParsed", function() {
   it("should return an object with option and files when given possible option as file name and arguments", function() {
     let possibleOption = ["-l"];
-    let expectedOutput = "l";
+    let expectedOutput = ["l"];
     let actualOutput = getOptionsParsed(possibleOption);
 
     assert.deepEqual(actualOutput, expectedOutput);
@@ -42,7 +66,7 @@ describe("getOptionsParsed", function() {
 
   it("should return an object with option and files when given possible option as '-l' and arguments", function() {
     let possibleOption = ["-l", "-c"];
-    let expectedOutput = "lc";
+    let expectedOutput = ["l", "c"];
     let actualOutput = getOptionsParsed(possibleOption);
 
     assert.deepEqual(actualOutput, expectedOutput);
