@@ -4,7 +4,6 @@ const { parser } = require("./src/handleIO.js");
 
 const main = function(userArgs) {
   let { option, files, errorStatus } = parser(userArgs);
-
   let contentDetails = wc({ option, files }, fs);
 
   console.log(contentDetails);

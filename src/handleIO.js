@@ -8,8 +8,14 @@ const getOptionsParsed = function(optionArgs) {
   return options;
 };
 
-const isValidOption = function(option) {
+const isValid = function(option) {
   return validOptions.includes(option);
+};
+
+const isValidOption = function(option) {
+  let options = option.split("");
+  options = options.filter(isValid);
+  return option.length == options.length;
 };
 
 const getOptionArg = function(arg) {

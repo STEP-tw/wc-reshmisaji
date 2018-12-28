@@ -104,6 +104,14 @@ describe("wc", function() {
 
       assert.deepEqual(actualOutput, expectedOutput);
     });
+
+    it("should return lineCount,wordCount,characterCount and fileName when given options", function() {
+      let parsedArgs = { option: "-lc", files: ["sample", "sampleNumbers"] };
+      let expectedOutput = "\t0\t5 sample\n\t0\t3 sampleNumbers\n\t0\t8 total";
+      let actualOutput = wc(parsedArgs, fs);
+
+      assert.deepEqual(actualOutput, expectedOutput);
+    });
   });
 });
 
