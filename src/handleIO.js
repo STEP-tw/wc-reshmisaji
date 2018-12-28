@@ -2,13 +2,17 @@ const TAB = "\t";
 const SPACE = " ";
 
 const getOptionsParsed = function(optionArgs) {
-  let option = optionArgs.map(x => x.slice(1)).join("");
+  let option = optionArgs.map(getOptions).join("");
 
   return option;
 };
 
 const getOptionArg = function(arg) {
   return arg.startsWith("-");
+};
+
+const getOptions = function(optionArgs) {
+  return optionArgs.slice(1);
 };
 
 const getFiles = function(arg) {
@@ -36,5 +40,6 @@ const formatOutput = function(counts, filePath) {
 module.exports = {
   parser,
   getOptionsParsed,
-  formatOutput
+  formatOutput,
+  getOptions
 };
