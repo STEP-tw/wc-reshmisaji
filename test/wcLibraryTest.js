@@ -8,7 +8,8 @@ const {
   getRequired,
   getContentDetails,
   addDetails,
-  addCounts
+  addCounts,
+  hasMultipleFiles
 } = require("../src/wcLibrary.js");
 
 const fs = {
@@ -209,6 +210,24 @@ describe("addCounts", function() {
     let secondCount = [2, 4, 6];
     let actualOutput = addCounts(firstCounts, secondCount);
     let expectedOutput = [3, 6, 9];
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
+
+describe("hasMultipleFiles", function() {
+  it("should return false when given an array with one element", function() {
+    let files = ["sample"];
+    let expectedOutput = false;
+    let actualOutput = hasMultipleFiles(files);
+
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+
+  it("should return true when given an array with more than one element", function() {
+    let files = ["sample", "test"];
+    let expectedOutput = true;
+    let actualOutput = hasMultipleFiles(files);
 
     assert.deepEqual(actualOutput, expectedOutput);
   });

@@ -22,6 +22,10 @@ const getWordCount = function(contents) {
   return wordsWithoutSpace.length;
 };
 
+const hasMultipleFiles = function(fileDetails) {
+  return fileDetails.length > 1;
+};
+
 const getContents = function(filePath, fs) {
   return fs.readFileSync(filePath, "utf8");
 };
@@ -81,7 +85,7 @@ const wc = function(filePath, fs) {
   let allCounts = fileDetails.map(getAllCounts);
   let total = allCounts.reduce(addCounts);
 
-  if (fileDetails.length > 1) {
+  if (hasMultipleFiles(fileDetails)) {
     fileDetails.push([total, "total"]);
   }
   let finalResult = fileDetails.map(x => addDetails(x));
@@ -98,5 +102,6 @@ module.exports = {
   getRequired,
   getContentDetails,
   addDetails,
-  addCounts
+  addCounts,
+  hasMultipleFiles
 };
