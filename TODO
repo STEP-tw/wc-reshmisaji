@@ -35,3 +35,22 @@ DONE:
 30 with arguments provides line counts and a total for multiple files
 31 with arguments provides byte counts and a total for multiple files
 32 with arguments provides word counts and a total for multiple files
+
+Refactoring:
+
+TODO:
+* Variable names:
+
+  
+
+
+
+
+
+
+DONE:
+
+* Variable names:
+
+  01 filePath in main() ==> userArgs
+  02 result in main() ==> contentDetails
