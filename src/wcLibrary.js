@@ -3,7 +3,7 @@ const {
   getCharacterCount,
   removeEmptyStrings
 } = require("../src/util.js");
-const { formatOutput, parser } = require("../src/handleIO.js");
+const { formatOutput } = require("../src/handleIO.js");
 
 const NEWLINE = "\n";
 const SPACE = " ";
@@ -22,8 +22,8 @@ const getWordCount = function(contents) {
   return wordsWithoutSpace.length;
 };
 
-const hasMultipleFiles = function(fileDetails) {
-  return fileDetails.length > 1;
+const hasMultipleFiles = function(files) {
+  return files.length > 1;
 };
 
 const getContents = function(filePath, fs) {
@@ -78,14 +78,13 @@ const getAllCounts = function(fileDetails) {
   return fileDetails[0];
 };
 
-const wc = function(filePath, fs) {
-  let { option, files } = parser(filePath);
+const wc = function({ option, files }, fs) {
   let getFileDetails = getContentDetails.bind(null, option, fs);
   let fileDetails = files.map(getFileDetails);
   let allCounts = fileDetails.map(getAllCounts);
   let total = allCounts.reduce(addCounts);
 
-  if (hasMultipleFiles(fileDetails)) {
+  if (hasMultipleFiles(files)) {
     fileDetails.push([total, "total"]);
   }
   let finalResult = fileDetails.map(x => addDetails(x));

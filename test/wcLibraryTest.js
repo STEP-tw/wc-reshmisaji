@@ -39,33 +39,33 @@ describe("getContents", function() {
 describe("wc", function() {
   describe("single Files", function() {
     it("should return lineCount,wordCount,characterCount and fileName", function() {
-      let fileName = ["sample"];
+      let parsedArgs = { option: "lwc", files: ["sample"] };
       let expectedOutput = "\t0\t3\t5 sample";
-      let actualOutput = wc(fileName, fs);
+      let actualOutput = wc(parsedArgs, fs);
 
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
     it("should return lineCount,wordCount,characterCount and fileName when given options", function() {
-      let fileName = ["-l", "sample"];
+      let parsedArgs = { option: "-l", files: ["sample"] };
       let expectedOutput = "\t0 sample";
-      let actualOutput = wc(fileName, fs);
+      let actualOutput = wc(parsedArgs, fs);
 
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
     it("should return lineCount,wordCount,characterCount and fileName when given options", function() {
-      let fileName = ["-w", "sample"];
+      let parsedArgs = { option: "-w", files: ["sample"] };
       let expectedOutput = "\t3 sample";
-      let actualOutput = wc(fileName, fs);
+      let actualOutput = wc(parsedArgs, fs);
 
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
     it("should return lineCount,wordCount,characterCount and fileName when given options", function() {
-      let fileName = ["-c", "sample"];
+      let parsedArgs = { option: "-c", files: ["sample"] };
       let expectedOutput = "\t5 sample";
-      let actualOutput = wc(fileName, fs);
+      let actualOutput = wc(parsedArgs, fs);
 
       assert.deepEqual(actualOutput, expectedOutput);
     });
@@ -73,34 +73,34 @@ describe("wc", function() {
 
   describe("multiple Files", function() {
     it("should return lineCount,wordCount,characterCount and fileName", function() {
-      let fileName = ["sample", "sampleNumbers"];
+      let parsedArgs = { option: "lcw", files: ["sample", "sampleNumbers"] };
       let expectedOutput =
         "\t0\t3\t5 sample\n\t0\t2\t3 sampleNumbers\n\t0\t5\t8 total";
-      let actualOutput = wc(fileName, fs);
+      let actualOutput = wc(parsedArgs, fs);
 
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
     it("should return lineCount,wordCount,characterCount and fileName when given options", function() {
-      let fileName = ["-l", "sample", "sampleNumbers"];
+      let parsedArgs = { option: "-l", files: ["sample", "sampleNumbers"] };
       let expectedOutput = "\t0 sample\n\t0 sampleNumbers\n\t0 total";
-      let actualOutput = wc(fileName, fs);
+      let actualOutput = wc(parsedArgs, fs);
 
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
     it("should return lineCount,wordCount,characterCount and fileName when given options", function() {
-      let fileName = ["-w", "sample", "sampleNumbers"];
+      let parsedArgs = { option: "-w", files: ["sample", "sampleNumbers"] };
       let expectedOutput = "\t3 sample\n\t2 sampleNumbers\n\t5 total";
-      let actualOutput = wc(fileName, fs);
+      let actualOutput = wc(parsedArgs, fs);
 
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
     it("should return lineCount,wordCount,characterCount and fileName when given options", function() {
-      let fileName = ["-c", "sample", "sampleNumbers"];
+      let parsedArgs = { option: "-c", files: ["sample", "sampleNumbers"] };
       let expectedOutput = "\t5 sample\n\t3 sampleNumbers\n\t8 total";
-      let actualOutput = wc(fileName, fs);
+      let actualOutput = wc(parsedArgs, fs);
 
       assert.deepEqual(actualOutput, expectedOutput);
     });
